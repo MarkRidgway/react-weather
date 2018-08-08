@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import './App.css';
 
 import WeatherCard from './components/WeatherCard';
+import CurrentWeather from './components/CurrentWeather';
 
 const Wrapper = styled.div`
   max-width: 800px;
@@ -15,10 +16,7 @@ class App extends Component {
   render() {
     return (
       <Wrapper>
-        <WeatherCard
-          temperature='93.2'
-          weatherId='802'
-          weatherDescription='scattered clouds'/>
+        <CurrentWeather zip='48322' />
       </Wrapper>
     );
   }
