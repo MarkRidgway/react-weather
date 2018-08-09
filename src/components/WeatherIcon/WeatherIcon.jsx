@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-
-import './WeatherIcon.css';
+import WeatherIcons from 'react-weathericons';
 
 const IconWrap = styled.div`
   color: #fff;
@@ -21,12 +20,10 @@ const Description = styled.p`
 class WeatherIcon extends Component {
   render() {
     return (
-      <IconWrap>
-        <WiIcon
-          className={ `wi wi-owm-${ this.props.weatherId }` }>
-        </WiIcon>
-        <Description>{ this.props.weatherDescription }</Description>
-      </IconWrap>
+      <div>
+        <i className={ `wi wi-owm-${ this.props.weatherId }` }></i>
+        <div>{ this.props.weatherDescription }</div>
+      </div>
     );
   }
 }

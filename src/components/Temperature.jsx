@@ -11,7 +11,7 @@ const TempDisplay = styled.p`
 class Temperature extends Component {
   render() {
     return (
-      <TempDisplay>{ this.props.temperature }°</TempDisplay>
+      <div>{ this.props.temperature }°</div>
     );
   }
 }

@@ -1,42 +1,76 @@
 import React, { Component } from 'react';
+import { Grid, Col, Row } from 'react-styled-flexboxgrid';
 import { fetchWeather } from '../helpers/open-weather-api';
 import WeatherCard from './WeatherCard';
+import WeatherData from './WeatherData';
 
 class CurrentWeather extends Component {
-  constructor(){
+  constructor() {
     super();
     this.state = {
-      temperature: 0,
-      weatherId: 800,
-      weatherDescription: ''
+      weather: {
+        temp: 0,
+        id: 800,
+        description: ''
+      },
+      data: {
+        windDirection: 0,
+        windSpeed: 0,
+        humidity: 0,
+        pressure: 0,
+        city: ''
+      }
     };
   }
 
-  render(){
-    return(
+  render() {
+    return (
       <div>
-        <h1>Current Weather for { this.props.zip }</h1>
-        <WeatherCard
-          temperature={ this.state.temperature }
-          weatherId={ this.state.weatherId }
-          weatherDescription={ this.state.weatherDescription }/>
+        <Row>
+          <Col xs={12} md={6} >
+            <WeatherCard
+              temperature={this.state.weather.temp}
+              weatherId={this.state.weather.id}
+              weatherDescription={this.state.weather.description} />
+          </Col>
+          <Col xs={12} md={6} >
+            <WeatherData
+              windSpeed={ this.state.data.windSpeed }
+              windDirection={ this.state.data.windDirection }
+              humidity={ this.state.data.humidity }
+              pressure={ this.state.data.pressure }
+              city={ this.state.data.city } />
+          </Col>
+        </Row>
       </div>
     );
   }
 
-  componentDidMount(){
+  componentDidMount() {
     fetchWeather(this.props.zip)
-    .then( (data) => {
-      console.log(data);
-      let temperature = data.main.temp;
-      let weatherId = data.weather[0].id;
-      let weatherDescription = data.weather[0].description;
+      .then((res) => {
+        console.log(res);
+        let weather = {
+          temp: res.main.temp,
+          id: res.weather[0].id,
+          description: res.weather[0].description
+        };
 
-      this.setState({temperature, weatherId, weatherDescription});
-    })
-    .catch( (error) => {
-      console.log(error);
-    });
+        let data = {
+          windDirection: res.wind.deg,
+          windSpeed: res.wind.speed,
+          humidity: res.main.humidity,
+          pressure: res.main.pressure,
+          city: res.name
+        };
+
+        // TODO add snow and rain checks
+
+        this.setState({ weather, data });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 }
 

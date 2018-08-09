@@ -21,14 +21,14 @@ const Card = styled.div`
 class WeatherCard extends Component {
   render() {
     return (
-      <CardWrap>
-        <Card>
+      <div>
+        <div>
           <Temperature temperature={ this.props.temperature } />
           <WeatherIcon
             weatherId={ this.props.weatherId }
             weatherDescription={ this.props.weatherDescription } />
-        </Card>
-      </CardWrap>
+        </div>
+      </div>
     );
   }
 }
