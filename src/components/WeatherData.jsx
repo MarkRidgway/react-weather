@@ -11,7 +11,7 @@ class WeatherData extends Component {
           <tbody>
             <tr>
               <th>Humidity</th>
-              <td>{ this.props.humidity }</td>
+              <td>{ this.props.humidity }%</td>
             </tr>
             <tr>
               <th>Pressure</th>
@@ -21,16 +21,8 @@ class WeatherData extends Component {
               <th>Wind</th>
               <td>
                 <i className='wi wi-wind towards-{ this.props.windDirection }-deg'></i>
-                <span>{ this.props.windSpeed }mph</span>
+                <span>{ Math.round(this.props.windSpeed) }mph</span>
               </td>
-            </tr>
-            <tr>
-              <th>Sunrise</th>
-              <td>{ moment(this.props.sunrise).format('h:mm:ss a') }</td>
-            </tr>
-            <tr>
-              <th>Sunset</th>
-              <td>{ moment(this.props.sunset).format('h:mm:ss a') }</td>
             </tr>
           </tbody>
         </table>

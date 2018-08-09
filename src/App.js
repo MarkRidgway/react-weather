@@ -49,15 +49,28 @@ const theme = {
 
 
 class App extends Component {
+  constructor(){
+    super();
+
+    this.state = {
+      zip: 84047
+    };
+
+    this.onZipChange = this.onZipChange.bind(this);
+  }
   render() {
     return (
       <ThemeProvider theme={theme}>
         <Grid>
-          <Header />
-          <CurrentWeather zip='84047' />
+          <Header onZipChange={ this.onZipChange } zip={ this.state.zip } />
+          <CurrentWeather zip={ this.state.zip } />
         </Grid>
       </ThemeProvider>
     );
+  }
+
+  onZipChange(zip){
+    this.setState({ zip });
   }
 }
 

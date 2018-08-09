@@ -5,8 +5,8 @@ import WeatherCard from './WeatherCard';
 import WeatherData from './WeatherData';
 
 class CurrentWeather extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       weather: {
         temp: 0,
@@ -47,7 +47,17 @@ class CurrentWeather extends Component {
   }
 
   componentDidMount() {
-    fetchWeather(this.props.zip)
+    this.fetchWeatherData(this.props.zip);
+  }
+
+  componentWillReceiveProps(nextProps){
+    if(this.props.zip != nextProps.zip){
+      this.fetchWeatherData(nextProps.zip);
+    }
+  }
+
+  fetchWeatherData(zip){
+    fetchWeather(zip)
       .then((res) => {
         console.log(res);
         let weather = {
