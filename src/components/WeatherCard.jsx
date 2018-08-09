@@ -18,10 +18,8 @@ const Card = styled.div`
   border-radius: 10px;
 `;
 
-
 class WeatherCard extends Component {
   render() {
-    console.log(this.state);
     return (
       <CardWrap>
         <Card>

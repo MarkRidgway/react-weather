@@ -27,6 +27,7 @@ class CurrentWeather extends Component {
   componentDidMount(){
     fetchWeather(this.props.zip)
     .then( (data) => {
+      console.log(data);
       let temperature = data.main.temp;
       let weatherId = data.weather[0].id;
       let weatherDescription = data.weather[0].description;
