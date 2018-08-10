@@ -27,6 +27,9 @@ class CurrentWeather extends Component {
     return (
       <div>
         <Row>
+          <Col xs={12}>
+            <h2>Current Weather</h2>
+          </Col>
           <Col xs={12} md={6} >
             <WeatherCard
               temperature={this.state.weather.temp}

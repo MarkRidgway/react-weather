@@ -5,7 +5,7 @@ class WeatherData extends Component {
   render() {
     return (
       <div>
-        <h2>{ this.props.city }</h2>
+        <h3>{ this.props.city }</h3>
         <div>{ moment().format('dddd, MMMM Do YYYY') } <strong>{ moment().format('h:mm:ss a') }</strong></div>
         <table>
           <tbody>
