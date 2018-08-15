@@ -9,16 +9,23 @@ class CurrentWeather extends Component {
     super(props);
     this.state = {
       weather: {
-        temp: 0,
-        id: 800,
-        description: ''
-      },
-      data: {
-        windDirection: 0,
-        windSpeed: 0,
-        humidity: 0,
-        pressure: 0,
-        city: ''
+        summary: 'Clear',
+        icon: 'clear-day',
+        precipIntensity: 0,
+        precipProbability: 0.06,
+        precipType: 'rain',
+        temperature: 72.48,
+        apparentTemperature: 72.48,
+        dewPoint: 39.18,
+        humidity: 0.3,
+        pressure: 1012.07,
+        windSpeed: 3.7,
+        windGust: 3.7,
+        windBearing: 71,
+        cloudCover: 0,
+        uvIndex: 0,
+        visibility: 10,
+        ozone: 278.76
       }
     };
   }
@@ -32,17 +39,27 @@ class CurrentWeather extends Component {
           </Col>
           <Col xs={12} md={6} >
             <WeatherCard
-              temperature={this.state.weather.temp}
-              weatherId={this.state.weather.id}
-              weatherDescription={this.state.weather.description} />
+              temperature={this.state.weather.temperature}
+              apparentTemperature={this.state.weather.apparentTemperature}
+              icon={this.state.weather.icon}
+              summary={this.state.weather.summary} />
           </Col>
           <Col xs={12} md={6} >
             <WeatherData
-              windSpeed={ this.state.data.windSpeed }
-              windDirection={ this.state.data.windDirection }
-              humidity={ this.state.data.humidity }
-              pressure={ this.state.data.pressure }
-              city={ this.state.data.city } />
+              location={ this.props.location }
+              precipIntensity={ this.state.weather.precipIntensity }
+              precipProbability={ this.state.weather.precipProbability }
+              precipType={ this.state.weather.precipType }
+              dewPoint={ this.state.weather.dewPoint }
+              humidity={ this.state.weather.humidity }
+              pressure={ this.state.weather.pressure }
+              windSpeed={ this.state.weather.windSpeed }
+              windGust={ this.state.weather.windGust }
+              windBearing={ this.state.weather.windBearing }
+              cloudCover={ this.state.weather.cloudCover }
+              uvIndex={ this.state.weather.uvIndex }
+              visibility={ this.state.weather.visibility }
+              ozone={ this.state.weather.ozone } />
           </Col>
         </Row>
       </div>
@@ -62,7 +79,7 @@ class CurrentWeather extends Component {
   fetchWeatherData(zip){
     fetchWeather(zip)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         let weather = {
           temp: res.main.temp,
           id: res.weather[0].id,
@@ -79,7 +96,7 @@ class CurrentWeather extends Component {
 
         // TODO add snow and rain checks
 
-        this.setState({ weather, data });
+        // this.setState({ weather, data });
       })
       .catch((error) => {
         console.log(error);

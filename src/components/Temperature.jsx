@@ -11,8 +11,19 @@ const TempDisplay = styled.p`
 class Temperature extends Component {
   render() {
     return (
-      <div>{ this.props.temperature }°</div>
+      <React.Fragment>
+        <div>{ this.props.temperature }°</div>
+        { this.feelsLike() }
+      </React.Fragment>
     );
+  }
+
+  feelsLike(){
+    if(this.props.apparentTemperature){
+      return(
+        <div>Feels Like { this.props.apparentTemperature }°</div>
+      );
+    }
   }
 }
 

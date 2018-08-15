@@ -23,10 +23,12 @@ class WeatherCard extends Component {
     return (
       <div>
         <div>
-          <Temperature temperature={ this.props.temperature } />
+          <Temperature
+            apparentTemperature={ this.props.apparentTemperature }
+            temperature={ this.props.temperature } />
           <WeatherIcon
-            weatherId={ this.props.weatherId }
-            weatherDescription={ this.props.weatherDescription } />
+            icon={ this.props.icon }
+            summary={ this.props.summary } />
         </div>
       </div>
     );

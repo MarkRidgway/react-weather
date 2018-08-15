@@ -55,27 +55,9 @@ class App extends Component {
 
     this.state = {
       location: {
-        lat: '40.7765868',
-        long: '-111.9905245',
+        latitude: '40.7765868',
+        longitude: '-111.9905245',
         city: 'Salt Lake City'
-      },
-      weather: {
-        summary: 'Clear',
-        icon: 'clear-day',
-        precipIntensity: 0,
-        precipProbability: 0,
-        temperature: 72.48,
-        apparentTemperature: 72.48,
-        dewPoint: 39.18,
-        humidity: 0.3,
-        pressure: 1012.07,
-        windSpeed: 3.7,
-        windGust: 3.7,
-        windBearing: 71,
-        cloudCover: 0,
-        uvIndex: 0,
-        visibility: 10,
-        ozone: 278.76
       },
       forecast: this.createEmptyForecast()
     };
@@ -87,7 +69,11 @@ class App extends Component {
       <ThemeProvider theme={theme}>
         <Grid>
           <Header onZipChange={ this.onZipChange } zip='84047' />
-          <CurrentWeather weather={ this.state.weather } />
+          <CurrentWeather
+            location={ this.state.location.city }
+            latitude={ this.state.location.latitude }
+            longitude={ this.state.location.longitude }
+            />
           <WeekForecast forecast={ this.state.forecast } />
         </Grid>
       </ThemeProvider>

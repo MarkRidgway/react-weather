@@ -59,7 +59,6 @@ class WeekForecast extends Component {
   fetchWeatherData(zip){
     forecast(zip)
       .then( (response) => {
-        console.log(response);
       })
       .catch( (error) => {
         console.log(error);
