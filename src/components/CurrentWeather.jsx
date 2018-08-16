@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Grid, Col, Row } from 'react-styled-flexboxgrid';
-import { fetchWeather } from '../helpers/open-weather-api';
+import { fetchWeather } from '../helpers/dark-sky-api';
 import WeatherCard from './WeatherCard';
 import WeatherData from './WeatherData';
 
@@ -67,36 +67,40 @@ class CurrentWeather extends Component {
   }
 
   componentDidMount() {
-    this.fetchWeatherData(this.props.zip);
+    this.fetchWeatherData(this.props.latitude, this.props.longitude);
   }
 
   componentWillReceiveProps(nextProps){
-    if(this.props.zip != nextProps.zip){
-      this.fetchWeatherData(nextProps.zip);
+    if(this.props.latitude != nextProps.latitude || this.props.longitude != nextProps.longitude){
+      this.fetchWeatherData(nextProps.latitude, nextProps.longitude);
     }
+
   }
 
-  fetchWeatherData(zip){
-    fetchWeather(zip)
+  fetchWeatherData(latitude, longitude){
+    fetchWeather(latitude,longitude )
       .then((res) => {
-        // console.log(res);
-        let weather = {
-          temp: res.main.temp,
-          id: res.weather[0].id,
-          description: res.weather[0].description
+        var weather = {
+          summary: res.currently.summary,
+          icon: res.currently.icon,
+          precipIntensity: res.currently.precipIntensity,
+          precipProbability: res.currently.precipProbability,
+          precipType: res.currently.precipType,
+          temperature: res.currently.temperature,
+          apparentTemperature: res.currently.apparentTemperature,
+          dewPoint: res.currently.dewPoint,
+          humidity: res.currently.humidity,
+          pressure: res.currently.pressure,
+          windSpeed: res.currently.windSpeed,
+          windGust: res.currently.windGust,
+          windBearing: res.currently.windBearing,
+          cloudCover: res.currently.cloudCover,
+          uvIndex: res.currently.uvIndex,
+          visibility: res.currently.visibility,
+          ozone: res.currently.ozone
         };
 
-        let data = {
-          windDirection: res.wind.deg,
-          windSpeed: res.wind.speed,
-          humidity: res.main.humidity,
-          pressure: res.main.pressure,
-          city: res.name
-        };
-
-        // TODO add snow and rain checks
-
-        // this.setState({ weather, data });
+        this.setState({ weather });
       })
       .catch((error) => {
         console.log(error);
