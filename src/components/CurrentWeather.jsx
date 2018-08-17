@@ -77,7 +77,8 @@ class CurrentWeather extends Component {
   }
 
   fetchWeatherData(latitude, longitude){
-    fetchWeather(latitude,longitude )
+    if(latitude && longitude){
+      fetchWeather(latitude,longitude )
       .then((res) => {
         var weather = {
           summary: res.currently.summary,
@@ -104,6 +105,7 @@ class CurrentWeather extends Component {
       .catch((error) => {
         console.log(error);
       });
+    }
   }
 }
 

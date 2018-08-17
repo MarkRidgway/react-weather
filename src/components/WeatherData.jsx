@@ -3,7 +3,6 @@ import moment from 'moment';
 
 class WeatherData extends Component {
   render() {
-    console.log(this.props);
     return (
       <div>
         <h3>{ this.props.location }</h3>

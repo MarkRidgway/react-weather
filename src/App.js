@@ -7,6 +7,7 @@ import { Grid } from 'react-styled-flexboxgrid';
 import Header from './components/Header';
 import CurrentWeather from './components/CurrentWeather';
 import WeekForecast from './components/WeekForecast';
+import { fetchLocation } from './helpers/google-maps-api';
 
 const themeOG = {
   flexboxgrid: {
@@ -55,19 +56,26 @@ class App extends Component {
 
     this.state = {
       location: {
-        latitude: '40.7765868',
-        longitude: '-111.9905245',
-        city: 'Salt Lake City'
+        zip: '84047',
+        latitude: '',
+        longitude: '',
+        city: ''
       }
     };
 
     this.onZipChange = this.onZipChange.bind(this);
+
+    this.onZipChange(this.state.location.zip);
+
+    setInterval(() => {
+      console.log(this.state.location.city);
+    }, 1000);
   }
   render() {
     return (
       <ThemeProvider theme={theme}>
         <Grid>
-          <Header onZipChange={ this.onZipChange } zip='84047' />
+          <Header onZipChange={ this.onZipChange } zip={ this.state.location.zip } />
           <CurrentWeather
             location={ this.state.location.city }
             latitude={ this.state.location.latitude }
@@ -83,7 +91,22 @@ class App extends Component {
   }
 
   onZipChange(zip){
-    // this.setState({ zip });
+    fetchLocation(zip)
+      .then( (response) => {
+        console.log(response);
+        var latitude = response.results[0].geometry.location.lat;
+        var longitude = response.results[0].geometry.location.lng;
+        var city = response.results[0].address_components[1].long_name;
+
+        this.setState({ location: {
+          latitude,
+          longitude,
+          city,
+          zip
+        }})
+
+      })
+      .catch( (error) => console.log(error));
   }
 
   createEmptyForecast(){

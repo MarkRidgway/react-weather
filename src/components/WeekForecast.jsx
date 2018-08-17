@@ -51,7 +51,8 @@ class WeekForecast extends Component {
   }
 
   fetchWeatherData(latitude, longitude){
-    fetchForecast(latitude,longitude )
+    if(latitude && longitude){
+      fetchForecast(latitude,longitude )
       .then((res) => {
         var days = res.daily.data.map( (day) => {
           return {
@@ -73,6 +74,7 @@ class WeekForecast extends Component {
       .catch((error) => {
         console.log(error);
       });
+    }
   }
 
   createEmptyForecast(){
