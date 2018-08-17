@@ -74,7 +74,6 @@ class CurrentWeather extends Component {
     if(this.props.latitude != nextProps.latitude || this.props.longitude != nextProps.longitude){
       this.fetchWeatherData(nextProps.latitude, nextProps.longitude);
     }
-
   }
 
   fetchWeatherData(latitude, longitude){

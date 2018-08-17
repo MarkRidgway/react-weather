@@ -58,8 +58,7 @@ class App extends Component {
         latitude: '40.7765868',
         longitude: '-111.9905245',
         city: 'Salt Lake City'
-      },
-      forecast: this.createEmptyForecast()
+      }
     };
 
     this.onZipChange = this.onZipChange.bind(this);
@@ -74,7 +73,10 @@ class App extends Component {
             latitude={ this.state.location.latitude }
             longitude={ this.state.location.longitude }
             />
-          <WeekForecast forecast={ this.state.forecast } />
+          <WeekForecast
+            location={ this.state.location.city }
+            latitude={ this.state.location.latitude }
+            longitude={ this.state.location.longitude } />
         </Grid>
       </ThemeProvider>
     );
@@ -107,22 +109,3 @@ class App extends Component {
 }
 
 export default App;
-
-// weather: {
-//   temperature: '',
-//   apparentTemperature: '',
-//   summary: '',
-//   icon: '',
-//   precipIntensity: '',
-//   precipProbability: '',
-//   dewPoint: '',
-//   humidity: '',
-//   pressure: '',
-//   cloudCover: '',
-//   uvIndex: '',
-//   visibility: '',
-//   ozone: '',
-//   windSpeed: '',
-//   windGust: '',
-//   windBearing: ''
-// }

@@ -1,27 +1,15 @@
 import React, { Component } from 'react';
 import { Grid, Col, Row } from 'react-styled-flexboxgrid';
-import { forecast } from '../helpers/open-weather-api';
-import WeatherCard from './WeatherCard';
+import moment from 'moment';
+import { fetchForecast } from '../helpers/dark-sky-api';
+import ForecastCard from './ForecastCard';
 
 class WeekForecast extends Component {
   constructor(props) {
     super(props);
 
-    let emptyWeather = {
-      temp: 0,
-      id: 800,
-      description: ''
-    };
-
-    let forecast = [];
-
-    for(let i = 0; i < 5; i++){
-      forecast[i] = Object.assign({}, emptyWeather);
-    }
-
-
     this.state = {
-      forecase: forecast
+      forecast: this.createEmptyForecast()
     };
   }
 
@@ -33,12 +21,18 @@ class WeekForecast extends Component {
             <h2>This Week</h2>
           </Col>
           <Col xs={12} md={6} >
-            { this.state.forecase.map( (weather, index) => (
-              <WeatherCard
-                key={index}
-                temperature={weather.temp}
-                weatherId={weather.id}
-                weatherDescription={weather.description} />
+            { this.state.forecast.map( (day) => (
+              <ForecastCard
+                key={ day.time }
+                time={ day.time }
+                temperatureHigh={ day.temperatureHigh }
+                temperatureLow={ day.temperatureLow }
+                icon={ day.icon }
+                summary={ day.summary }
+                sunriseTime={ day.sunriseTime }
+                sunsetTime={ day.sunsetTime }
+                precipProbability={ day.precipProbability }
+                precipType={ day.precipType } />
             )) }
           </Col>
         </Row>
@@ -47,23 +41,60 @@ class WeekForecast extends Component {
   }
 
   componentDidMount() {
-    this.fetchWeatherData(this.props.zip);
+    this.fetchWeatherData(this.props.latitude, this.props.longitude);
   }
 
   componentWillReceiveProps(nextProps){
-    if(this.props.zip != nextProps.zip){
-      this.fetchWeatherData(nextProps.zip);
+    if(this.props.latitude != nextProps.latitude || this.props.longitude != nextProps.longitude){
+      this.fetchWeatherData(nextProps.latitude, nextProps.longitude);
     }
   }
 
-  fetchWeatherData(zip){
-    forecast(zip)
-      .then( (response) => {
-      })
-      .catch( (error) => {
-        console.log(error);
-      })
+  fetchWeatherData(latitude, longitude){
+    fetchForecast(latitude,longitude )
+      .then((res) => {
+        var days = res.daily.data.map( (day) => {
+          return {
+            time: day.time,
+            temperatureHigh: day.temperatureHigh,
+            temperatureLow: day.temperatureLow,
+            icon: day.icon,
+            summary: day.summary,
+            sunriseTime: day.sunriseTime,
+            sunsetTime: day.sunsetTime,
+            precipProbability: day.precipProbability,
+            precipType: day.precipType
+          };
+        });
 
+        this.setState({ forecast: days.slice(1, 8) });
+
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  createEmptyForecast(){
+    const emptyWeather = {
+      temperatureHigh: '',
+      temperatureLow: '',
+      icon: '',
+      summary: '',
+      sunriseTime: '',
+      sunsetTime: '',
+      precipProbability: '',
+      precipType: ''
+    };
+
+    let forecast = [];
+
+    for(let i = 0; i < 7; i++){
+      forecast[i] = Object.assign({}, emptyWeather);
+      forecast[i].time = i;
+    }
+
+    return forecast;
   }
 }
 
