@@ -66,10 +66,6 @@ class App extends Component {
     this.onZipChange = this.onZipChange.bind(this);
 
     this.onZipChange(this.state.location.zip);
-
-    setInterval(() => {
-      console.log(this.state.location.city);
-    }, 1000);
   }
   render() {
     return (
@@ -93,7 +89,6 @@ class App extends Component {
   onZipChange(zip){
     fetchLocation(zip)
       .then( (response) => {
-        console.log(response);
         var latitude = response.results[0].geometry.location.lat;
         var longitude = response.results[0].geometry.location.lng;
         var city = response.results[0].address_components[1].long_name;

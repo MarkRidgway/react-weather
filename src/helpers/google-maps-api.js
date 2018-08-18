@@ -1,4 +1,4 @@
-const apikey = '';
+const apikey = process.env.REACT_APP_GEOCODE_API;
 
 // Fetch location information by zip
 export function fetchLocation(zip){
