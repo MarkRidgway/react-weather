@@ -1,30 +1,72 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 import styled from 'styled-components';
 
 const CardWrap = styled.div`
-  outline: 1px dashed red;
+  padding: 10px 4px;
   margin-bottom: 20px;
+  color: #2C3942;
+  text-align: center;
+  background-color: #EFEFEF;
+  border-radius: 10px;
+`;
+
+const Date = styled.div`
+  margin-bottom: 0.8em;
+  font-size: 1.2em;
+  font-family: 'Oswald', sans-serif;
+`;
+
+const IconWrapper = styled.div`
+  margin-bottom: 0.4em;
+`;
+
+const Icon = styled.i`
+  font-size: 2em;
+`;
+
+const Temperature = styled.div``;
+
+const High = styled.span`
+  color: #E54C42;
+`;
+const Low = styled.span`
+  margin-left: 0.2em;
+  color: #405663;
 `;
 
 class ForecastCard extends Component {
   render() {
     return (
-      <div>
-        <div>
-          <div>{ this.props.time }</div>
-          <div>{ this.props.temperatureHigh }</div>
-          <div>{ this.props.temperatureLow }</div>
-          <div>{ this.props.icon }</div>
-          <div>{ this.props.summary }</div>
-          <div>{ this.props.sunriseTime }</div>
-          <div>{ this.props.sunsetTime }</div>
-          <div>{ this.props.precipProbability }</div>
-          <div>{ this.props.precipType }</div>
-          <div>{ this.props.icon }</div>
-          <div>{ this.props.summary }</div>
-        </div>
-      </div>
+      <CardWrap>
+        <Date>
+          { this.displayDate() }
+        </Date>
+        <IconWrapper>
+          <Icon className={ `wi wi-forecast-io-${ this.props.icon }` }></Icon>
+        </IconWrapper>
+        <Temperature>
+          <High>{ this.props.temperatureHigh }</High>
+          <Low>{ this.props.temperatureLow }</Low>
+        </Temperature>
+      </CardWrap>
     );
+  }
+
+  displayDate(){
+    const date = moment.unix(this.props.time).format('ddd M-D');
+    const today = moment().format('ddd M-D');
+
+    if(date === today){
+      return(
+        <div>Today</div>
+      );
+    }
+    else{
+      return(
+        <div>{ moment.unix(this.props.time).format('ddd M-D') }</div>
+      );
+    }
   }
 }
 
