@@ -3,6 +3,7 @@ import { Grid, Col, Row } from 'react-styled-flexboxgrid';
 import styled from 'styled-components';
 
 const HeaderWrapper = styled.header`
+  padding: 20px 0;
   color: #fff;
   background-color: #333;
 
@@ -20,7 +21,6 @@ const SearchWrapper = styled.div`
     width: 100%;
     max-width: 140px;
     padding: 8px 10px;
-    color: #333;
     font-size: 1.2em;
     text-align: center;
     border: 2px solid #333;

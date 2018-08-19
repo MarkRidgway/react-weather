@@ -15,7 +15,7 @@ class WeekForecast extends Component {
 
   render() {
     return (
-      <div>
+      <Grid>
         <Row>
           <Col xs={12}>
             <h2>This Week</h2>
@@ -23,7 +23,7 @@ class WeekForecast extends Component {
         </Row>
         <Row>
           { this.state.forecast.map( (day) => (
-            <Col xs={6} md={3} lg={1} key={ day.key }>
+            <Col xs={6} md={3} lg key={ day.key }>
               <ForecastCard
                 time={ day.time }
                 temperatureHigh={ day.temperatureHigh }
@@ -37,7 +37,7 @@ class WeekForecast extends Component {
               </Col>
           )) }
         </Row>
-      </div>
+      </Grid>
     );
   }
 

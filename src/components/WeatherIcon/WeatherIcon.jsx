@@ -2,27 +2,28 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 const IconWrap = styled.div`
-  color: #fff;
-  text-align: center;
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
+  font-size: 1.3em;
 `;
 
-const WiIcon = styled.i`
-  margin-bottom: 0.2em;
+const Icon = styled.i`
   font-size: 4em;
 `;
 
-const Description = styled.p`
-  margin: 0.4em 0;
+const Summary = styled.h3`
+  margin-left: 0.2em;
   font-size: 1.4em;
 `;
 
 class WeatherIcon extends Component {
   render() {
     return (
-      <div>
-        <i className={ `wi wi-forecast-io-${ this.props.icon }` }></i>
-        <div>{ this.props.summary }</div>
-      </div>
+      <IconWrap>
+        <Icon className={ `wi wi-forecast-io-${ this.props.icon }` }></Icon>
+        <Summary>{ this.props.summary }</Summary>
+      </IconWrap>
     );
   }
 }

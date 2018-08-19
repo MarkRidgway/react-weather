@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 import WeatherIcon from './WeatherIcon/WeatherIcon';
-import Temperature from './Temperature';
 
 const CardWrap = styled.div`
   outline: 1px dashed red;

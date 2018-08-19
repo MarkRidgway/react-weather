@@ -3,6 +3,14 @@ import { Grid, Col, Row } from 'react-styled-flexboxgrid';
 import { fetchWeather } from '../helpers/dark-sky-api';
 import WeatherCard from './WeatherCard';
 import WeatherData from './WeatherData';
+import styled from 'styled-components';
+
+const Heading = styled.h2`
+  margin-bottom: 1em;
+  padding-bottom: 0.8em;
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+`;
 
 class CurrentWeather extends Component {
   constructor(props) {
@@ -32,21 +40,20 @@ class CurrentWeather extends Component {
 
   render() {
     return (
-      <div>
-        <Row>
+      <Grid>
+        <Row center='lg'>
           <Col xs={12}>
-            <h2>Current Weather</h2>
+            <Heading>Current Weather for { this.props.location }</Heading>
           </Col>
-          <Col xs={12} md={6} >
+          <Col xs={12} md={4} lg={4} >
             <WeatherCard
               temperature={this.state.weather.temperature}
               apparentTemperature={this.state.weather.apparentTemperature}
               icon={this.state.weather.icon}
               summary={this.state.weather.summary} />
           </Col>
-          <Col xs={12} md={6} >
+          <Col xs={12} md={8} lg={6}>
             <WeatherData
-              location={ this.props.location }
               precipIntensity={ this.state.weather.precipIntensity }
               precipProbability={ this.state.weather.precipProbability }
               precipType={ this.state.weather.precipType }
@@ -62,7 +69,7 @@ class CurrentWeather extends Component {
               ozone={ this.state.weather.ozone } />
           </Col>
         </Row>
-      </div>
+      </Grid>
     );
   }
 
