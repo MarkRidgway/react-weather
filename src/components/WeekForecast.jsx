@@ -20,10 +20,11 @@ class WeekForecast extends Component {
           <Col xs={12}>
             <h2>This Week</h2>
           </Col>
-          <Col xs={12} md={6} >
-            { this.state.forecast.map( (day) => (
+        </Row>
+        <Row>
+          { this.state.forecast.map( (day) => (
+            <Col xs={6} md={3} lg={1} key={ day.key }>
               <ForecastCard
-                key={ day.time }
                 time={ day.time }
                 temperatureHigh={ day.temperatureHigh }
                 temperatureLow={ day.temperatureLow }
@@ -33,8 +34,8 @@ class WeekForecast extends Component {
                 sunsetTime={ day.sunsetTime }
                 precipProbability={ day.precipProbability }
                 precipType={ day.precipType } />
-            )) }
-          </Col>
+              </Col>
+          )) }
         </Row>
       </div>
     );
@@ -56,6 +57,7 @@ class WeekForecast extends Component {
       .then((res) => {
         var days = res.daily.data.map( (day) => {
           return {
+            key: day.time,
             time: day.time,
             temperatureHigh: day.temperatureHigh,
             temperatureLow: day.temperatureLow,
@@ -68,7 +70,7 @@ class WeekForecast extends Component {
           };
         });
 
-        this.setState({ forecast: days.slice(1, 8) });
+        this.setState({ forecast: days });
 
       })
       .catch((error) => {
@@ -93,7 +95,7 @@ class WeekForecast extends Component {
 
     for(let i = 0; i < 7; i++){
       forecast[i] = Object.assign({}, emptyWeather);
-      forecast[i].time = i;
+      forecast[i].key = i;
     }
 
     return forecast;

@@ -9,23 +9,23 @@ class CurrentWeather extends Component {
     super(props);
     this.state = {
       weather: {
-        summary: 'Clear',
-        icon: 'clear-day',
-        precipIntensity: 0,
-        precipProbability: 0.06,
-        precipType: 'rain',
-        temperature: 72.48,
-        apparentTemperature: 72.48,
-        dewPoint: 39.18,
-        humidity: 0.3,
-        pressure: 1012.07,
-        windSpeed: 3.7,
-        windGust: 3.7,
-        windBearing: 71,
-        cloudCover: 0,
-        uvIndex: 0,
-        visibility: 10,
-        ozone: 278.76
+        summary: '',
+        icon: '',
+        precipIntensity: '',
+        precipProbability: '',
+        precipType: '',
+        temperature: '',
+        apparentTemperature: '',
+        dewPoint: '',
+        humidity: '',
+        pressure: '',
+        windSpeed: '',
+        windGust: '',
+        windBearing: '',
+        cloudCover: '',
+        uvIndex: '',
+        visibility: '',
+        ozone: ''
       }
     };
   }

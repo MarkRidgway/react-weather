@@ -70,7 +70,7 @@ class App extends Component {
   render() {
     return (
       <ThemeProvider theme={theme}>
-        <Grid>
+        <React.Fragment>
           <Header onZipChange={ this.onZipChange } zip={ this.state.location.zip } />
           <CurrentWeather
             location={ this.state.location.city }
@@ -81,7 +81,7 @@ class App extends Component {
             location={ this.state.location.city }
             latitude={ this.state.location.latitude }
             longitude={ this.state.location.longitude } />
-        </Grid>
+        </React.Fragment>
       </ThemeProvider>
     );
   }
