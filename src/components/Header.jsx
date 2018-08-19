@@ -4,10 +4,11 @@ import styled from 'styled-components';
 
 const HeaderWrapper = styled.header`
   padding: 20px 0;
-  color: #fff;
-  background-color: #333;
+  color: #BED3DD;
+  background-color: #2C3942;
 
   h1{
+    color: inherit;
     text-align: center;
   }
 `;
@@ -23,7 +24,7 @@ const SearchWrapper = styled.div`
     padding: 8px 10px;
     font-size: 1.2em;
     text-align: center;
-    border: 2px solid #333;
+    border: 2px solid #405663;
   }
 `;
 

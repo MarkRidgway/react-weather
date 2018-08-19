@@ -11,9 +11,10 @@ const TemperatureWrapper = styled.div`
   align-items: baseline;
 `;
 
-const Temperature = styled.h3`
+const Temperature = styled.div`
   margin: 0 0 0.2em 0;
   font-size: 3em;
+  font-family: 'Oswald', sans-serif;
 `;
 
 const FeelsLike = styled.div`

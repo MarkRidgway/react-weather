@@ -12,9 +12,10 @@ const Icon = styled.i`
   font-size: 4em;
 `;
 
-const Summary = styled.h3`
+const Summary = styled.div`
   margin-left: 0.2em;
   font-size: 1.4em;
+  font-family: 'Oswald', sans-serif;
 `;
 
 class WeatherIcon extends Component {

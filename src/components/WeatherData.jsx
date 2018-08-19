@@ -25,6 +25,7 @@ const Date = styled.div`
   margin-bottom: 1em;
   font-size: 1.4em;
   text-align: left;
+  font-family: 'Oswald', sans-serif;
 `;
 
 const Wind = styled.span`

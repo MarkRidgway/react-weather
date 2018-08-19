@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
 import { Grid, Col, Row } from 'react-styled-flexboxgrid';
+import styled from 'styled-components';
 import { fetchWeather } from '../helpers/dark-sky-api';
 import WeatherCard from './WeatherCard';
-import WeatherData from './WeatherData';
-import styled from 'styled-components';
+import WeatherData from './WeatherData'
+import Heading from './Heading';
 
 const CurrentWeatherWrapper = styled.div`
   margin-bottom: 3em;
 `;
 
-const Heading = styled.h2`
-  margin-bottom: 1em;
-  padding-bottom: 0.8em;
-  font-size: 2.2em;
-  text-align: center;
+const HeadingBorder = Heading.extend`
+  margin-bottom: 0.8em;
+  padding-bottom: 0.4em;
   border-bottom: 1px solid #ccc;
 `;
 
@@ -49,7 +48,7 @@ class CurrentWeather extends Component {
         <Grid>
           <Row center='lg'>
             <Col xs={12}>
-              <Heading>Current Weather for { this.props.location }</Heading>
+              <HeadingBorder>Current Weather for { this.props.location }</HeadingBorder>
             </Col>
             <Col xs={12} md={4} lg={4} >
               <WeatherCard
@@ -92,8 +91,7 @@ class CurrentWeather extends Component {
 
   fetchWeatherData(latitude, longitude){
     if(latitude && longitude){
-      fetchWeather(latitude,longitude )
-      .then((res) => {
+      fetchWeather(latitude,longitude ).then((res) => {
         var weather = {
           summary: res.currently.summary,
           icon: res.currently.icon,
@@ -115,10 +113,7 @@ class CurrentWeather extends Component {
         };
 
         this.setState({ weather });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+      }).catch((error) => console.log(error) );
     }
   }
 }
