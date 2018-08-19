@@ -2,36 +2,58 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 import WeatherIcon from './WeatherIcon/WeatherIcon';
-import Temperature from './Temperature';
 
-const CardWrap = styled.div`
+const Card = styled.div``;
+
+const TemperatureWrapper = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
+  align-items: baseline;
 `;
 
-const Card = styled.div`
-  min-width: 180px;
-  min-height: 200px;
-  padding: 20px;
-  background: #5B6F80;
-  border: 2px solid #747A80;
-  border-radius: 10px;
+const Temperature = styled.div`
+  margin: 0 0 0.2em 0;
+  font-size: 3em;
+  font-family: 'Oswald', sans-serif;
+`;
+
+const FeelsLike = styled.div`
+  margin-left: 0.2em;
+  font-size: 1.4em;
+  font-weight: 500;
+  font-style: italic;
+  color: #555;
 `;
 
 class WeatherCard extends Component {
   render() {
     return (
-      <div>
-        <div>
-          <Temperature
-            apparentTemperature={ this.props.apparentTemperature }
-            temperature={ this.props.temperature } />
-          <WeatherIcon
-            icon={ this.props.icon }
-            summary={ this.props.summary } />
-        </div>
-      </div>
+      <Card>
+        <WeatherIcon
+          icon={ this.props.icon }
+          summary={ this.props.summary } />
+        <TemperatureWrapper>
+          <Temperature>
+            { Math.floor(this.props.temperature) }°
+          </Temperature>
+          { this.feelsLikeDisplay() }
+        </TemperatureWrapper>
+      </Card>
     );
+  }
+
+  feelsLikeDisplay(){
+    let showApparentTemperature = true;
+    let temperature = Math.floor(this.props.temperature);
+    let apparentTemperature = Math.floor(this.props.apparentTemperature);
+
+    if(apparentTemperature !== temperature || showApparentTemperature){
+      return(
+        <FeelsLike>
+          Feels Like { apparentTemperature }°
+        </FeelsLike>
+      );
+    }
   }
 }
 
