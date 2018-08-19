@@ -27,6 +27,13 @@ const Date = styled.div`
   text-align: left;
 `;
 
+const Wind = styled.span`
+  span {
+    margin-left: 0.2em;
+
+  }
+`;
+
 class WeatherData extends Component {
   render() {
     return (
@@ -41,29 +48,20 @@ class WeatherData extends Component {
               <td>{ Math.round(this.props.pressure) } mb</td>
             </tr>
             <tr>
-              <th>PrecipIntensity</th>
-              <td>{ this.props.precipIntensity }</td>
-            </tr>
-            <tr>
               <th>PrecipProbability</th>
               <td>{ this.props.precipProbability * 100 } % chance { this.props.precipType || 'rain' }</td>
             </tr>
+            { this.precipIntensity() }
             <tr>
               <th>DewPoint</th>
               <td>{ this.props.dewPoint }°</td>
             </tr>
             <tr>
               <th>Humidity</th>
-              <td>{ this.props.humidity }%</td>
+              <td>{ Math.floor(this.props.humidity * 100) }%</td>
             </tr>
-            <tr>
-              <th>CloudCover</th>
-              <td>{ this.props.cloudCover }</td>
-            </tr>
-            <tr>
-              <th>UvIndex</th>
-              <td>{ this.props.uvIndex }</td>
-            </tr>
+            { this.cloudCover() }
+            { this.uvIndex() }
             <tr>
               <th>Visibility</th>
               <td>{ this.props.visibility }mi</td>
@@ -75,15 +73,53 @@ class WeatherData extends Component {
             <tr>
               <th>Wind</th>
               <td>
-                <i className={`wi wi-wind towards-${this.props.windBearing}-deg`}></i>
-                <span>{ Math.round(this.props.windSpeed) }mph</span>
-                <span>Gusts{ Math.round(this.props.windGust) }mph</span>
+                <Wind>
+                  <i className={`wi wi-wind towards-${this.props.windBearing}-deg`}></i>
+                  <span>{ Math.round(this.props.windSpeed) }mph</span>
+                </Wind>
               </td>
+            </tr>
+            <tr>
+              <th>Gusts</th>
+              <td>{ Math.round(this.props.windGust) }mph</td>
             </tr>
           </tbody>
         </DataTable>
       </div>
     );
+  }
+
+  precipIntensity(){
+    if(this.props.precipIntensity > 0){
+      return(
+        <tr>
+          <th>PrecipIntensity</th>
+          <td>{ this.props.precipIntensity }</td>
+        </tr>
+      );
+    }
+  }
+
+  cloudCover(){
+    if(this.props.cloudCover > 0){
+      return(
+        <tr>
+          <th>CloudCover</th>
+          <td>{ this.props.cloudCover }</td>
+        </tr>
+      );
+    }
+  }
+
+  uvIndex(){
+    if(this.props.uvIndex > 0){
+      return(
+        <tr>
+          <th>UV Index</th>
+          <td>{ this.props.uvIndex }</td>
+        </tr>
+      );
+    }
   }
 }
 

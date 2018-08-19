@@ -5,9 +5,14 @@ import WeatherCard from './WeatherCard';
 import WeatherData from './WeatherData';
 import styled from 'styled-components';
 
+const CurrentWeatherWrapper = styled.div`
+  margin-bottom: 3em;
+`;
+
 const Heading = styled.h2`
   margin-bottom: 1em;
   padding-bottom: 0.8em;
+  font-size: 2.2em;
   text-align: center;
   border-bottom: 1px solid #ccc;
 `;
@@ -40,36 +45,38 @@ class CurrentWeather extends Component {
 
   render() {
     return (
-      <Grid>
-        <Row center='lg'>
-          <Col xs={12}>
-            <Heading>Current Weather for { this.props.location }</Heading>
-          </Col>
-          <Col xs={12} md={4} lg={4} >
-            <WeatherCard
-              temperature={this.state.weather.temperature}
-              apparentTemperature={this.state.weather.apparentTemperature}
-              icon={this.state.weather.icon}
-              summary={this.state.weather.summary} />
-          </Col>
-          <Col xs={12} md={8} lg={6}>
-            <WeatherData
-              precipIntensity={ this.state.weather.precipIntensity }
-              precipProbability={ this.state.weather.precipProbability }
-              precipType={ this.state.weather.precipType }
-              dewPoint={ this.state.weather.dewPoint }
-              humidity={ this.state.weather.humidity }
-              pressure={ this.state.weather.pressure }
-              windSpeed={ this.state.weather.windSpeed }
-              windGust={ this.state.weather.windGust }
-              windBearing={ this.state.weather.windBearing }
-              cloudCover={ this.state.weather.cloudCover }
-              uvIndex={ this.state.weather.uvIndex }
-              visibility={ this.state.weather.visibility }
-              ozone={ this.state.weather.ozone } />
-          </Col>
-        </Row>
-      </Grid>
+      <CurrentWeatherWrapper>
+        <Grid>
+          <Row center='lg'>
+            <Col xs={12}>
+              <Heading>Current Weather for { this.props.location }</Heading>
+            </Col>
+            <Col xs={12} md={4} lg={4} >
+              <WeatherCard
+                temperature={this.state.weather.temperature}
+                apparentTemperature={this.state.weather.apparentTemperature}
+                icon={this.state.weather.icon}
+                summary={this.state.weather.summary} />
+            </Col>
+            <Col xs={12} md={8} lg={6}>
+              <WeatherData
+                precipIntensity={ this.state.weather.precipIntensity }
+                precipProbability={ this.state.weather.precipProbability }
+                precipType={ this.state.weather.precipType }
+                dewPoint={ this.state.weather.dewPoint }
+                humidity={ this.state.weather.humidity }
+                pressure={ this.state.weather.pressure }
+                windSpeed={ this.state.weather.windSpeed }
+                windGust={ this.state.weather.windGust }
+                windBearing={ this.state.weather.windBearing }
+                cloudCover={ this.state.weather.cloudCover }
+                uvIndex={ this.state.weather.uvIndex }
+                visibility={ this.state.weather.visibility }
+                ozone={ this.state.weather.ozone } />
+            </Col>
+          </Row>
+        </Grid>
+      </CurrentWeatherWrapper>
     );
   }
 

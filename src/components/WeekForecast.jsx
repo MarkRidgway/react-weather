@@ -3,6 +3,15 @@ import { Grid, Col, Row } from 'react-styled-flexboxgrid';
 import moment from 'moment';
 import { fetchForecast } from '../helpers/dark-sky-api';
 import ForecastCard from './ForecastCard';
+import styled from 'styled-components';
+
+const Heading = styled.h2`
+  margin-bottom: 1em;
+  font-size: 2.2em;
+  padding-bottom: 0.8em;
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+`;
 
 class WeekForecast extends Component {
   constructor(props) {
@@ -18,7 +27,7 @@ class WeekForecast extends Component {
       <Grid>
         <Row>
           <Col xs={12}>
-            <h2>This Week</h2>
+            <Heading>Forecast for { this.props.location }</Heading>
           </Col>
         </Row>
         <Row>
