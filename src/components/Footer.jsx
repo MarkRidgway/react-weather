@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { Grid, Col, Row } from 'react-styled-flexboxgrid';
 import styled from 'styled-components';
-import { fetchForecast } from '../helpers/dark-sky-api';
-import ForecastCard from './ForecastCard';
-import Heading from './Heading';
 
 const FooterWrapper = styled.footer`
-  padding: 30px 0;
   color: #EFEFEF;
-  background-color: #405663;
+  background-color: #2C3942;
+
+  a, strong{
+    color: #BED3DD;
+  }
 `;
 
 class Footer extends Component {
@@ -17,15 +17,12 @@ class Footer extends Component {
       <FooterWrapper>
         <Grid>
           <Row>
-            <Col xs={12} md={12}>
-              <p>Mark Ridgway</p>
-            </Col>
-            <Col xs={12} md={12}>
-              <p>Mark Ridgway</p>
+            <Col xs={12}>
+              <p>A demo application by <a href='https://mark.world'>Mark Ridgway</a></p>
+              <p>Built with <strong>React</strong> using <strong>Styled Components</strong> and <a href="https://darksky.net/poweredby/">Powered by Dark Sky</a></p>
             </Col>
           </Row>
         </Grid>
-
       </FooterWrapper>
     );
   }

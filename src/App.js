@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
+import {ThemeProvider} from 'styled-components';
 import './App.css';
 import './assets/css/weather-icons.css';
 import './assets/css/weather-icons-wind.css';
-import {ThemeProvider} from 'styled-components';
-import { Grid } from 'react-styled-flexboxgrid';
+import { fetchLocation } from './helpers/google-maps-api';
 import Header from './components/Header';
+import Footer from './components/Footer';
 import CurrentWeather from './components/CurrentWeather';
 import WeekForecast from './components/WeekForecast';
-import { fetchLocation } from './helpers/google-maps-api';
+
 
 const themeOG = {
   flexboxgrid: {
@@ -75,12 +76,12 @@ class App extends Component {
           <CurrentWeather
             location={ this.state.location.city }
             latitude={ this.state.location.latitude }
-            longitude={ this.state.location.longitude }
-            />
+            longitude={ this.state.location.longitude } />
           <WeekForecast
             location={ this.state.location.city }
             latitude={ this.state.location.latitude }
             longitude={ this.state.location.longitude } />
+          <Footer />
         </React.Fragment>
       </ThemeProvider>
     );
