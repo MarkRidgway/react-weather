@@ -31,7 +31,6 @@ class Header extends Component {
               placeholder='Zip'
               value={ this.state.zip }
               onChange={ this.handleChange }/>
-            <span>Imperial</span> | <a href="#">Metric</a>
           </Col>
         </Row>
       </div>
