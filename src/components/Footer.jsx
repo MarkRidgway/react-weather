@@ -18,7 +18,7 @@ class Footer extends Component {
         <Grid>
           <Row>
             <Col xs={12}>
-              <p>A demo application by <a href='https://mark.world'>Mark Ridgway</a></p>
+              <p>A demo application by <a href='https://mark.world'>Mark Ridgway</a>. View Code on <a href='https://github.com/MarkRidgway/react-weather'>GitHub</a></p>
               <p>Built with <strong>React</strong> using <strong>Styled Components</strong> and <a href="https://darksky.net/poweredby/">Powered by Dark Sky</a></p>
             </Col>
           </Row>
