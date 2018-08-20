@@ -36,24 +36,12 @@ class WeatherCard extends Component {
           <Temperature>
             { Math.floor(this.props.temperature) }°
           </Temperature>
-          { this.feelsLikeDisplay() }
+          <FeelsLike>
+            Feels Like { this.props.apparentTemperature }°
+          </FeelsLike>
         </TemperatureWrapper>
       </Card>
     );
-  }
-
-  feelsLikeDisplay(){
-    let showApparentTemperature = true;
-    let temperature = Math.floor(this.props.temperature);
-    let apparentTemperature = Math.floor(this.props.apparentTemperature);
-
-    if(apparentTemperature !== temperature || showApparentTemperature){
-      return(
-        <FeelsLike>
-          Feels Like { apparentTemperature }°
-        </FeelsLike>
-      );
-    }
   }
 }
 
