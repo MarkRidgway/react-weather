@@ -3,7 +3,10 @@ import styled from 'styled-components';
 
 import WeatherIcon from './WeatherIcon/WeatherIcon';
 
-const Card = styled.div``;
+const Card = styled.div`
+  max-width: 240px;
+  margin: 0 auto;
+`;
 
 const TemperatureWrapper = styled.div`
   display: flex;
