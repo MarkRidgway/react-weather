@@ -31,7 +31,7 @@ const High = styled.span`
   color: #E54C42;
 `;
 const Low = styled.span`
-  margin-left: 0.2em;
+  margin-left: 0.4em;
   color: #405663;
 `;
 
@@ -46,8 +46,8 @@ class ForecastCard extends Component {
           <Icon className={ `wi wi-forecast-io-${ this.props.icon }` }></Icon>
         </IconWrapper>
         <Temperature>
-          <High>{ this.props.temperatureHigh }</High>
-          <Low>{ this.props.temperatureLow }</Low>
+          <High>{ Math.floor(this.props.temperatureHigh) }°</High>
+          <Low>{ Math.floor(this.props.temperatureLow) }°</Low>
         </Temperature>
       </CardWrap>
     );
@@ -71,11 +71,3 @@ class ForecastCard extends Component {
 }
 
 export default ForecastCard;
-// temperatureHigh
-// temperatureLow
-// icon
-// summary
-// sunriseTime
-// sunsetTime
-// precipProbability
-// precipType

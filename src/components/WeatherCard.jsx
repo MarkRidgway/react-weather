@@ -3,7 +3,10 @@ import styled from 'styled-components';
 
 import WeatherIcon from './WeatherIcon/WeatherIcon';
 
-const Card = styled.div``;
+const Card = styled.div`
+  max-width: 240px;
+  margin: 0 auto;
+`;
 
 const TemperatureWrapper = styled.div`
   display: flex;
@@ -36,24 +39,12 @@ class WeatherCard extends Component {
           <Temperature>
             { Math.floor(this.props.temperature) }°
           </Temperature>
-          { this.feelsLikeDisplay() }
+          <FeelsLike>
+            Feels Like { Math.floor(this.props.apparentTemperature) }°
+          </FeelsLike>
         </TemperatureWrapper>
       </Card>
     );
-  }
-
-  feelsLikeDisplay(){
-    let showApparentTemperature = true;
-    let temperature = Math.floor(this.props.temperature);
-    let apparentTemperature = Math.floor(this.props.apparentTemperature);
-
-    if(apparentTemperature !== temperature || showApparentTemperature){
-      return(
-        <FeelsLike>
-          Feels Like { apparentTemperature }°
-        </FeelsLike>
-      );
-    }
   }
 }
 
